@@ -1,4 +1,6 @@
 # test
-这是做完一半的商城
-
-这是一次新的提交
+项目设置
+    npm install
+编译运行
+    npm run serve
+    
