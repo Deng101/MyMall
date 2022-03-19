@@ -40,8 +40,8 @@ export default {
   },
   data(){
     return{
-      icon: ['el-icon-map-location','el-icon-attract','el-icon-service','el-icon-chat-dot-round'],
-      text: ['收货地址','试用领取','官方客服','我的评价'],
+      icon: ['el-icon-present','el-icon-attract','el-icon-service','el-icon-chat-dot-round'],
+      text: ['新用户赠礼','试用领取','官方客服','我的评价'],
     }
   },
   methods: {},

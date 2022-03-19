@@ -129,7 +129,9 @@ export default {
   padding-bottom: 10px;
   text-align: center;
   border-radius: 5px;
-  left: 38px;
+  left: 10%;
+  right: 10%;
+  top: 25%;
 }
 .newuser a {
   color: #269bb7;

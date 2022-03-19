@@ -2,27 +2,60 @@
   <div class="profile" id="pfile">
     <div id="mask"></div>
     <nav-bar class="nav-bar"><div slot="center">我的</div> </nav-bar>
-    <div>
-      <login-view>
-        <h3 slot="nlog" @click="showlg">登录/注册</h3>
-      </login-view>
-    </div>
-
     <div class="login" id="tlogin" style="display: none">
       <login></login>
     </div>
     <div class="register" id="register" style="display: none">
       <register-view></register-view>
     </div>
+
+  <div class="content">
+        <div>
+      <login-view>
+        <h3 slot="nlog" @click="showlg">登录/注册</h3>
+      </login-view>
+    </div>
     <list-view/>
     <first-list/>
     <second-list/>
     <third-list/>
+    <div class="orderset">
+      <span>
+        <i class="el-icon-location-outline"></i>
+        地址管理</span>
+      <i class="el-icon-arrow-right right"></i>
+    </div>
+    <div class="orderset">
+      <span>
+        <i class="el-icon-bell"></i>
+        消息通知设置</span>
+      <i class="el-icon-arrow-right right"></i>
+    </div>
+    <div class="orderset">
+      <span>
+        <i class="el-icon-s-custom"></i>
+        隐私管理</span>
+      <i class="el-icon-arrow-right right"></i>
+    </div>
+    <div class="orderset">
+      <span>
+        <i class="el-icon-paperclip"></i>
+        通用</span>
+      <i class="el-icon-arrow-right right"></i>
+    </div>
+    <div class="orderset">
+      <span>
+        <i class="el-icon-s-check"></i>
+        诊断工具</span>
+      <i class="el-icon-arrow-right right"></i>
+    </div>
+
     <div class="btn" v-show="!getlog_status">
       <el-button type="danger" plain @click="loginOut()" class="elbtn"
         >危险按钮</el-button
       >
     </div>
+  </div>
   </div>
 </template>
 
@@ -37,6 +70,7 @@ import RegisterView from "./childComps/RegisterView.vue";
 import Login from "./childComps/Login.vue";
 
 import { mapGetters, mapMutations } from "vuex";
+import Scroll from '../../components/common/scroll/Scroll.vue';
 
 export default {
   name: "Profile",
@@ -49,6 +83,8 @@ export default {
     Login,
     SecondList,
     ThirdList,
+    Scroll,
+    Scroll,
   },
   computed: {
     ...mapGetters(["log_status"]),
@@ -83,6 +119,21 @@ export default {
 </script>
 
 <style>
+.profile {
+  position: relative;
+  height: 100vh;
+  background-color: #f2f2f2;
+  /* z-index: 1000; */
+}
+
+.content{
+    overflow: auto;
+    height: calc(100% - 93px);
+  }
+.content::-webkit-scrollbar{
+    display:none;/*隐藏滚动条*/ 
+  }
+
 .icon {
   width: 1.3em;
   height: 1.3em;
@@ -103,13 +154,9 @@ export default {
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.8);
+  z-index: 1800;
 }
 
-.profile {
-  height: 100vh;
-  background-color: #f2f2f2;
-  z-index: 1000;
-}
 .nav-bar {
   background-color: red;
   color: white;
@@ -120,6 +167,22 @@ h3 {
   padding-left: 10px;
   line-height: 80px;
   font-size: 20px;
+}
+.orderset{
+  position: relative;
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  line-height: 40px;
+  background-color: #ffffff;
+}
+.orderset span{
+  margin: 15px;
+}
+.orderset .right{
+  position: absolute;
+  right: 10px;
+  top: 6px;
 }
 
 /* element ui调整 */
