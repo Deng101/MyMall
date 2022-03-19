@@ -23,5 +23,10 @@ export default {
   delsel(state,i){
     console.log(i);
       state.cartList.splice(i,1)
+  },
+
+  /* 用户地址存取 */
+  addNewLocation(state,newlocation){
+    state.myLocation.push(newlocation)
   }
 }

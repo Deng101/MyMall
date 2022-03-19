@@ -39,5 +39,12 @@ export default {
       }
       resolve('删除成功！')
     })
+  },
+  addLocation(context,newlocation){
+    return new Promise((resolve,reject) => {
+      /* newlocation.id = context.state.mylocation.length */
+      context.commit('addNewLocation',newlocation)
+      resolve('添加成功')
+    })
   }
 }

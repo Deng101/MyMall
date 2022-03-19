@@ -1,8 +1,11 @@
 <template>
   <div class="profile" id="pfile">
     <div id="mask"></div>
+    <transition>
+      <location-view v-if="isshowlocation" @closelocation="changelocation"/>
+    </transition>
     <nav-bar class="nav-bar"><div slot="center">我的</div> </nav-bar>
-    <div class="login" id="tlogin" style="display: none">
+    <div class="login" id="tlogin" style="display: none"> 
       <login></login>
     </div>
     <div class="register" id="register" style="display: none">
@@ -19,7 +22,7 @@
     <first-list/>
     <second-list/>
     <third-list/>
-    <div class="orderset">
+    <div class="orderset" @click="changelocation">
       <span>
         <i class="el-icon-location-outline"></i>
         地址管理</span>
@@ -68,6 +71,7 @@ import SecondList from "./childComps/SecondList.vue";
 import ThirdList from "./childComps/ThirdList.vue";
 import RegisterView from "./childComps/RegisterView.vue";
 import Login from "./childComps/Login.vue";
+import LocationView from "./childComps/LocationView.vue"
 
 import { mapGetters, mapMutations } from "vuex";
 import Scroll from '../../components/common/scroll/Scroll.vue';
@@ -84,7 +88,12 @@ export default {
     SecondList,
     ThirdList,
     Scroll,
-    Scroll,
+    LocationView,
+  },
+  data(){
+    return {
+      isshowlocation: false,
+    }
   },
   computed: {
     ...mapGetters(["log_status"]),
@@ -92,6 +101,7 @@ export default {
       return this.$store.state.log_status;
     },
   },
+  
   methods: {
     showlg() {
       document.getElementById("mask").style.display = "block";
@@ -114,6 +124,12 @@ export default {
       this.$store.dispatch("changeStatus");
       console.log(this.$store.state.log_status);
     },
+    changelocation(){
+      this.isshowlocation = !this.isshowlocation
+    },
+    closelocation(){
+      this.isshowlocation = !this.isshowlocation
+    }
   },
 };
 </script>
@@ -202,5 +218,25 @@ h3 {
 }
 .elbtn {
   width: 80%;
+}
+
+/*动画部分  */
+.v-enter{
+  transform: translateX(100%);
+}
+.v-enter-active{
+  transition: transform .3s;
+}
+.v-enter-to{
+  transform: translateX(0);
+}
+.v-leave{
+  transform: translateX(0);
+}
+.v-leave-active{
+  transition: transform .3s;
+}
+.v-leave-to{
+  transform: translateX(100%);
 }
 </style>

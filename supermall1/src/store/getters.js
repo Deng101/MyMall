@@ -7,5 +7,8 @@ export default {
   },
   log_status(state){
     return state.log_status
+  },
+  myLocation(state){
+    return state.myLocation
   }
 }

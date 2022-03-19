@@ -9,7 +9,8 @@ const state = {
   cartList: [],
   username: '',
   password: '',
-  log_status: true
+  log_status: true,
+  myLocation:[],
 }
 
 const store = new Vuex.Store({
