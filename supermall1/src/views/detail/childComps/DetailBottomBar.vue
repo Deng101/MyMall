@@ -26,9 +26,9 @@ export default {
   name: "DetailBottomBar",
   methods: {
     addToCart(){
-      // console.log('add');
       this.$emit('addCart')
-    }
+    },
+    
   }
 }
 </script>
@@ -36,13 +36,10 @@ export default {
 <style scoped>
   .bottom-bar{
     height: 55px;
-    /*position: relative;*/
     position: fixed;
     left: 0;
     right: 0;
-    /*bottom: 49px;*/
     background-color: #fff;
-
     display: flex;
     text-align: center;
   }

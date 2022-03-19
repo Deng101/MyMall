@@ -45,7 +45,10 @@ const routes = [
   },
   {
     path: '/detail/:iid',
-    component: Detail
+    component: Detail,
+    meta: {
+      title: '商品详情'
+    }
   },
 ]
 const router = new VueRouter({

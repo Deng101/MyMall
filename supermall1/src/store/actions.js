@@ -9,21 +9,35 @@ export default {
       //   }
       // }
       // 查看是否有该商品
-      let oldProduct = context.state.cartList.find(item => item.iid === payload.iid)
+      let oldProduct = context.state.cartList.find(item => (item.iid === payload.iid)&&(item.size === payload.size))
       if (oldProduct){
         context.commit('addCounter',oldProduct)
-        resolve('商品数量+1')
+        resolve('添加商品成功！')
       }else {
-        payload.count = 1
+        payload.count = payload.count
         // context.state.cartList.push(payload)
         context.commit('addTOCart',payload)
-        resolve('添加商品成功')
+        resolve('新添加商品成功')
       }
     })
   },
   //提交登录状态
   changeStatus(context){
-    console.log(context);
     context.commit('cgloginStatus')
+  },
+  delall(context){
+    return new Promise((resolve,reject) => {
+      context.commit('delall')
+      resolve('购物车已清空！')
+    })
+  },
+  delsel(context,arr){
+    return new Promise((resolve,reject) => {
+      for(let i in arr){
+        context.commit('delsel',arr[i])
+        console.log(arr[i]);
+      }
+      resolve('删除成功！')
+    })
   }
 }

@@ -14,9 +14,10 @@
     <div class="register" id="register" style="display: none">
       <register-view></register-view>
     </div>
-    <list-view></list-view>
-    <order-list></order-list>
-
+    <list-view/>
+    <first-list/>
+    <second-list/>
+    <third-list/>
     <div class="btn" v-show="!getlog_status">
       <el-button type="danger" plain @click="loginOut()" class="elbtn"
         >危险按钮</el-button
@@ -29,9 +30,12 @@
 import NavBar from "../../components/common/navbar/NavBar";
 import ListView from "./childComps/ListView.vue";
 import LoginView from "./childComps/LoginView.vue";
-import OrderList from "./childComps/OrderList.vue";
+import FirstList from "./childComps/FirstList.vue";
+import SecondList from "./childComps/SecondList.vue";
+import ThirdList from "./childComps/ThirdList.vue";
 import RegisterView from "./childComps/RegisterView.vue";
 import Login from "./childComps/Login.vue";
+
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
@@ -40,9 +44,11 @@ export default {
     NavBar,
     ListView,
     LoginView,
-    OrderList,
+    FirstList,
     RegisterView,
     Login,
+    SecondList,
+    ThirdList,
   },
   computed: {
     ...mapGetters(["log_status"]),

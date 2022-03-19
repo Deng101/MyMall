@@ -6,7 +6,6 @@
       :goodsitem="item"
     >
     </goods-list-item>
-    <button @click="fn">迪纳基</button>
   </div>
 </template>
 
@@ -20,24 +19,20 @@ export default {
   props: {
     categoryDetail: {
       type: Array,
-        default() {
-          return []
-        }
+      default() {
+        return [];
+      },
     },
   },
-  methods: {
-    fn(){
-      console.log(this.categoryDetail);
-    }
-  }
+  methods: {},
 };
 </script>
 
 <style scoped>
-.tab-content-detail{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 2px;
-  }
+.tab-content-detail {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 2px;
+}
 </style>
