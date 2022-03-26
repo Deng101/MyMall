@@ -38,6 +38,6 @@ name: "Toast",
   color: #fff;
   background-color: rgba(0,0,0,.75);
 
-  z-index: 30;
+  z-index: 9999;
 }
 </style>

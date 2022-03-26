@@ -6,6 +6,12 @@
         @changeaddlocation="changeaddlocation"
       />
     </transition>
+    <transition>
+      <edit-location-view 
+      v-if="isshoweditlocation" 
+      @changeaddlocation="changeeditlocation"
+      />
+    </transition>
     <header>
       <i class="el-icon-arrow-left" @click="backicon"></i>
       <div>我的收货地址</div>
@@ -14,13 +20,17 @@
       <a href="JavaScript:void(0)"><i class="el-icon-plus"></i>添加新地址</a>
     </div>
     <section>
-           
-        
       <ul>
         <li v-for="(item, index) in myLocation" :key="index">
-          <h4>{{item.name.value}}<span class="tel">{{item.tel.value}}</span></h4>
-          <div class="loc">{{item.location.value}}
-              <i class="el-icon-edit-outline icon"></i>
+          <h4>
+            {{ item.name }}<span class="tel">{{ item.tel }}</span>
+          </h4>
+          <div class="loc">
+            {{ item.location }}
+            <i
+              class="el-icon-edit-outline icon"
+              @click="editlocation(index)"
+            ></i>
           </div>
         </li>
       </ul>
@@ -30,21 +40,23 @@
 
 <script>
 import AddLocationView from "./AddLocationView.vue";
-import {mapGetters} from "vuex";
+import EditLocationView from "./EditLocationView.vue";
+import { mapGetters } from "vuex";
 export default {
   name: "LocationView",
   components: {
     AddLocationView,
+    EditLocationView,
   },
   data() {
     return {
       isshowaddolcation: false,
+      isshoweditlocation: false,
+      currenIndex: null,
     };
   },
   computed: {
-      ...mapGetters([
-          'myLocation'
-      ])
+    ...mapGetters(["myLocation"]),
   },
   methods: {
     backicon() {
@@ -52,6 +64,13 @@ export default {
     },
     changeaddlocation() {
       this.isshowaddolcation = !this.isshowaddolcation;
+    },
+    changeeditlocation(){
+        this.isshoweditlocation = !this.isshoweditlocation
+    },
+    editlocation(index) {
+      this.$store.dispatch('addNewId',index)
+      this.changeeditlocation()
     },
   },
 };
@@ -91,7 +110,7 @@ section {
   margin: auto;
 }
 section ul li {
-    position: relative;
+  position: relative;
   border-bottom: 1px solid #eaeae1;
 }
 section ul li h4 {

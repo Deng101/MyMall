@@ -22,7 +22,7 @@
     <first-list/>
     <second-list/>
     <third-list/>
-    <div class="orderset" @click="changelocation">
+    <div class="orderset" @click="checkislogin">
       <span>
         <i class="el-icon-location-outline"></i>
         地址管理</span>
@@ -55,7 +55,7 @@
 
     <div class="btn" v-show="!getlog_status">
       <el-button type="danger" plain @click="loginOut()" class="elbtn"
-        >危险按钮</el-button
+        >退出登录</el-button
       >
     </div>
   </div>
@@ -72,6 +72,7 @@ import ThirdList from "./childComps/ThirdList.vue";
 import RegisterView from "./childComps/RegisterView.vue";
 import Login from "./childComps/Login.vue";
 import LocationView from "./childComps/LocationView.vue"
+import Toast from "../../components/common/toast/Toast.vue"
 
 import { mapGetters, mapMutations } from "vuex";
 import Scroll from '../../components/common/scroll/Scroll.vue';
@@ -89,6 +90,7 @@ export default {
     ThirdList,
     Scroll,
     LocationView,
+    Toast,
   },
   data(){
     return {
@@ -123,6 +125,15 @@ export default {
     loginOut() {
       this.$store.dispatch("changeStatus");
       console.log(this.$store.state.log_status);
+    },
+    checkislogin(){
+      if(this.log_status === true){
+        this.$toast.showToast('请先登录')
+        this.showlg()
+        console.log('请先登录');
+      }else{
+        this.changelocation()
+      }
     },
     changelocation(){
       this.isshowlocation = !this.isshowlocation

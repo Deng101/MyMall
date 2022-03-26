@@ -12,8 +12,9 @@ export default {
     state.cartList.push(payload)
   },
   //修改登录状态
-  cgloginStatus(state){
+  cgloginStatus(state,lgname){
     state.log_status = !state.log_status
+    state.username = lgname
   },
   /* 删除所有商品 */
   delall(state){
@@ -28,5 +29,14 @@ export default {
   /* 用户地址存取 */
   addNewLocation(state,newlocation){
     state.myLocation.push(newlocation)
+  },
+  addtestId(state,id){
+    state.testIndex = id
+  },
+  delLoc(state,index){
+    state.myLocation.splice(index,1)
+  },
+  udLocation(state,newLoc){
+    state.myLocation[state.testIndex] = newLoc
   }
 }

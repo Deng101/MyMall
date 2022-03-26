@@ -104,8 +104,8 @@ export default {
             password === res.data[0].password
           ) {
             Message.success("登录成功！");
-            this.$store.state.log_status = false
-            this.$store.state.username = res.data[0].username
+            this.$store.dispatch('changeStatus',res.data[0].username)
+            /* this.$store.state.username = res.data[0].username */
             this.closelg();
           } else {
             Message.error("密码错误！");

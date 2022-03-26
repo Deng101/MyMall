@@ -1,16 +1,16 @@
 <template>
   <div class="locationview">
     <header>
-      <i class="el-icon-arrow-left" @click="backicon"></i>
-      <div>新建收货地址</div>
+      <i class="el-icon-arrow-left left" @click="backicon"></i>
+      <div>修改收货地址</div>
+      <span class="deleteicon" @click="delLoc">删除</span>
     </header>
     <section>
       <div>
         <label for="name">收货人</label
         ><input
           type="text"
-          placeholder="请填写收货人姓名"
-          v-model="name"
+          :value="myLocation[testIndex].name"
           id="name"
           ref="name"
           autocomplete="off"
@@ -20,8 +20,7 @@
         <label for="tel">手机号码</label
         ><input
           type="number"
-          placeholder="请填写收货人手机号"
-          v-model="tel"
+          :value="myLocation[testIndex].tel"
           id="tel"
           ref="tel"
           autocomplete="off"
@@ -31,8 +30,7 @@
         <label for="location">详细地址</label
         ><input
           type="text"
-          placeholder="请填写收货详细地址"
-          v-model="location"
+          :value="myLocation[testIndex].location"
           id="location"
           ref="location"
           autocomplete="off"
@@ -40,53 +38,49 @@
       </div>
     </section>
 
-    <div class="confirm" @click="confirmlocation">
-      <input type="submit" value="确定"/>
+    <div class="confirm" @click="confirm">
+      <input type="submit" value="确定" />
     </div>
   </div>
 </template>
 
 <script>
 import Toast from "../../../components/common/toast/Toast.vue";
+import { mapGetters } from "vuex";
 export default {
-  name: "AddLocationView",
+  name: "EditLocationView",
   components: {
     Toast,
   },
-  data() {
-    return {
-      name: null,
-      tel: null,
-      location: null,
-    };
+  computed: {
+    ...mapGetters(["myLocation", "testIndex"]),
   },
   methods: {
     backicon() {
       this.$emit("changeaddlocation");
     },
-    confirmlocation() {
-      if (!this.name) {
-        this.$toast.showToast("姓名不能为空哦！", 1000);
-      } else if (!this.tel) {
-        this.$toast.showToast("电话号码不能为空哦！", 1000);
-      } else if (!this.location) {
-        this.$toast.showToast("地址不能为空哦！", 1000);
-      } else {
-        const newlocation = {};
-        newlocation.name = this.$refs.name.value;
-        newlocation.tel = this.$refs.tel.value;
-        newlocation.location = this.$refs.location.value;
-        console.log(newlocation.name.value);
-        this.$store.dispatch("addLocation", newlocation).then((res) => {
-          this.$toast.showToast(res, 1000);
-          this.backicon()
-        });
-      }
+    delLoc() {
+      this.$store.dispatch("delLoc", this.testIndex).then((res) => {
+          this.$toast.showToast(res,1000)
+      });
+      console.log(this.testIndex);
+      this.backicon();
     },
+    confirm(){
+        let newLoc = {}
+        newLoc.name = this.$refs.name.value
+        newLoc.tel = this.$refs.tel.value
+        newLoc.location = this.$refs.location.value
+        this.$store.dispatch('changelocation',newLoc).then((res) => {
+            this.$toast.showToast(res, 1000);
+            this.backicon();
+            /* console.log(this.myLocation);
+            console.log(this.myLocation[this.testIndex].name.value); */
+        })
+    }
   },
 };
 </script>
-
 <style scoped>
 .locationview {
   position: fixed;
@@ -105,10 +99,17 @@ export default {
   line-height: 49px;
   border-bottom: 1px solid #e0e0d1;
 }
-.locationview header i {
+.locationview header .left {
   position: absolute;
   left: 10px;
   top: 13px;
+}
+.deleteicon {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  font-size: 16px;
+  color: #ec4141;
 }
 .locationview header div {
   width: 100%;

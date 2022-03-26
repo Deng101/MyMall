@@ -10,5 +10,8 @@ export default {
   },
   myLocation(state){
     return state.myLocation
+  },
+  testIndex(state){
+    return state.testIndex
   }
 }

@@ -22,8 +22,8 @@ export default {
     })
   },
   //提交登录状态
-  changeStatus(context){
-    context.commit('cgloginStatus')
+  changeStatus(context,lgname){
+    context.commit('cgloginStatus',lgname)
   },
   delall(context){
     return new Promise((resolve,reject) => {
@@ -46,5 +46,24 @@ export default {
       context.commit('addNewLocation',newlocation)
       resolve('添加成功')
     })
+  },
+  addNewId(context,newid){
+    context.commit('addtestId',newid)
+  },
+  delLoc(context,index){
+    return new Promise((resolve,reject) => {
+      /* newlocation.id = context.state.mylocation.length */
+      context.commit('delLoc',index)
+      resolve('删除成功')
+    })
+  },
+  changelocation(context,newLoc){
+    return new Promise((resolve,reject) => {
+      /* newlocation.id = context.state.mylocation.length */
+      context.commit('udLocation',newLoc)
+      resolve('删除成功')
+    })
+
+    
   }
 }

@@ -44,7 +44,7 @@
 
 <script>
 import axios from "axios";
-import { Message } from 'element-ui';
+import { Message } from "element-ui";
 export default {
   name: "RegisterView",
   data() {
@@ -90,7 +90,7 @@ export default {
         })
         .then((res) => {
           /* 此处需要判断是否存在账号，如果res.data.length>=1 则账号被占用。*/
-          if (res.data.length === 0) {
+          if (res.data.length === 0 && username != "" && password != "") {
             axios
               .post("/api/user/addUser", {
                 username,
@@ -98,7 +98,7 @@ export default {
               })
               .then((res) => {
                 console.log(res);
-                Message.success('恭喜您，注册成功！')
+                Message.success("恭喜您，注册成功！");
                 setTimeout(() => {
                   this.closelg();
                 }, 1000);
@@ -107,14 +107,14 @@ export default {
                 console.log(err);
               });
           } else {
-            Message.error('抱歉，该账号已被注册！')
+            Message.error("抱歉，该账号已被注册或账号密码不能为空！");
           }
         })
         .catch((err) => {
           console.log(err);
         });
     },
-    
+
     resetForm(formName) {
       this.$refs[formName].resetFields();
     },
