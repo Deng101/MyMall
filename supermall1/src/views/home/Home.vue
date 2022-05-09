@@ -3,7 +3,7 @@
     <nav-bar class="home_navbar"><div slot="center">购物街</div></nav-bar>
     <tab-control :titles="['流行','新款','精选']"
                  @tabClick="tabClick"
-                 v-show="isTabFixed" ref="tabControl1"/>      <!--    ref="tabControl1"-->
+                 v-show="isTabFixed" ref="tabControl1"/>
    <scroll class="content"
            ref="scroll" :probe-type="3"
            @scroll="contentScroll" :pull-up-load="true"
@@ -13,7 +13,7 @@
      <feature-view/>
      <tab-control :titles="['流行','新款','精选']"
                   @tabClick="tabClick" ref="tabControl2"
-                  :class="{fixed: isTabFixed}"/><!--     ref="tabControl2"-->
+                  :class="{fixed: isTabFixed}"/>
      <goods-list :goods="showGoods"/>
    </scroll>
 <!--    组件不可以直接监听，添加.native修饰符可以监听原生事件-->

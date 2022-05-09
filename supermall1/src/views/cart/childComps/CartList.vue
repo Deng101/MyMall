@@ -2,7 +2,9 @@
   <div class="cart-list">
     <scroll class="content" ref="scroll">
         <div>
-          <cart-list-item v-for="(item,index) in cartList" :key="index" :product="item"/>
+          <cart-list-item v-for="(item,index) in cartList" 
+          :key="index" 
+          :product="item"/>
           <h5 style="display:none" v-show="!cartLength">
             <el-empty description="空空如也！"></el-empty>
           </h5>

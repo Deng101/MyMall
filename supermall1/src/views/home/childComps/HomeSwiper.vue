@@ -10,8 +10,6 @@
 
 <script>
 import {Swiper, SwiperItem} from "components/common/swiper";
-// import BScroll from "better-scroll";
-// BScroll.use(ObserveImage)
 export default {
 name: "HomeSwiper",
   props: {

@@ -5,9 +5,7 @@ const obj = {}
 const toastContrustor = Vue.extend(Toast)
 
 obj.install = function (Vue){
-  // console.log('执行toast');
   // 1.创建组件构造器
-
   // 2.new的方式，根据组件构造器，可以创建出来的一个组件对象
   const toast = new toastContrustor()
   // 3.将组建对象，手动挂载到某个元素上

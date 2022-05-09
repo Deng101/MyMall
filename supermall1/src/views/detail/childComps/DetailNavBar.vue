@@ -6,7 +6,8 @@
     <div slot="center" class="title">
       <div v-for="(item,index) in this.titles"
            class="title-item" :class="{actived: index === currentIndex}"
-           @click="titleClick(index)">
+           @click="titleClick(index)"
+           :key="index">
         {{item}}</div>
     </div>
   </nav-bar>

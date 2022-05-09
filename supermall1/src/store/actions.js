@@ -61,7 +61,7 @@ export default {
     return new Promise((resolve,reject) => {
       /* newlocation.id = context.state.mylocation.length */
       context.commit('udLocation',newLoc)
-      resolve('删除成功')
+      resolve('修改成功')
     })
 
     

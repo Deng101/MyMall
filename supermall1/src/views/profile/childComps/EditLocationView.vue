@@ -74,8 +74,6 @@ export default {
         this.$store.dispatch('changelocation',newLoc).then((res) => {
             this.$toast.showToast(res, 1000);
             this.backicon();
-            /* console.log(this.myLocation);
-            console.log(this.myLocation[this.testIndex].name.value); */
         })
     }
   },

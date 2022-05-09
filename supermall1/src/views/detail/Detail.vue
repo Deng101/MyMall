@@ -15,11 +15,8 @@
         :detailInfo="detailInfo"
         @detailImageLoad="detailImageLoad"
       />
-
       <detail-param-info :param-info="paramInfo" ref="params" />
-
       <detail-comment-info :comment-info="commentInfo" ref="comment" />
-
       <goods-list :goods="recommends" ref="recommend" />
     </scroll>
     <detail-bottom-bar class="bottom-bar" @addCart="addToCart" />

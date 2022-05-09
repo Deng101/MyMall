@@ -1,7 +1,8 @@
 <template>
   <div class="tab-cate" v-if="subcategories.list">
     <el-row :gutter="20">
-      <el-col :span="6" v-for="(item, index) in subcategories.list" :key="index"
+      <el-col :span="6" v-for="(item, index) in subcategories.list" 
+      :key="index"
         ><div class="grid-content bg-purple item">
           <a href="item.link">
             <img class="item-img" :src="item.image" alt="" />
@@ -10,7 +11,6 @@
         </div></el-col
       >
     </el-row>
-
   </div>
 </template>
 
@@ -29,15 +29,14 @@ export default {
 </script>
 
 <style scoped>
-.tab-cate{
-
+.tab-cate {
 }
-.item{
-    padding: 10px 10px;
+.item {
+  padding: 10px 10px;
 }
-.item-text{
-    text-align: center;
-    font-size: 13px;
+.item-text {
+  text-align: center;
+  font-size: 13px;
 }
 
 .el-row {
@@ -46,8 +45,6 @@ export default {
 .el-col {
   border-radius: 4px;
 }
-
-
 
 .grid-content {
   border-radius: 4px;
